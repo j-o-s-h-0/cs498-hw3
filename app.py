@@ -15,7 +15,7 @@ def insert_fast():
 @app.route("/insert-safe", methods=["POST"])
 def insert_safe():
   data = request.get_json()
-  result = collection.with_options(write_concern=WriteConcern("majority")).insert_one(data)
+  result = collection.with_options(write_concern=WriteConcern(w="majority")).insert_one(data)
   return jsonify({"inserted_id": str(result.inserted_id)})
 
 @app.route("/count-tesla-primary", methods=["GET"])
